@@ -1,6 +1,6 @@
-# ThirdFactor KYC Demo — Referro Wallet
+# Third Factor KYC Demo — Digital Wallet
 
-A demo digital wallet app that showcases the ThirdFactor KYC SDK. Each time a client clicks **"Start KYC →"**, a fresh unique user session is generated automatically — no Postman, no manual link generation.
+A demo digital wallet app that showcases the Third Factor KYC SDK. Each time a client clicks **"Start KYC →"**, a fresh unique user session is generated automatically — no Postman, no manual link generation.
 
 ---
 
