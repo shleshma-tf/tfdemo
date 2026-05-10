@@ -234,10 +234,9 @@ export default function Home() {
         {/* ── Footer ── */}
         <footer className="footer">
           <div className="tf-logo">
-            <img src="/tf-logo.png" alt="ThirdFactor Logo" style={{ width: '28px', height: '28px', objectFit: 'contain' }} />
             <span className="tf-wordmark">thirdfactor.ai</span>
           </div>
-          <div className="footer-sub">Powered by ThirdFactor KYC · Demo Environment</div>
+          <div className="footer-sub">Third Factor Demo Environment</div>
         </footer>
       </div>
 
