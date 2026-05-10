@@ -143,14 +143,18 @@ export default function Home() {
         <div className="acct-card">
           <div className="acct-row">
             <div className="acct-avatar">
-              <img src="/tf-logo.png" alt="Logo" style={{ width: '80%', height: '80%', objectFit: 'contain' }} />
+              <Icon name="user" size={30} color="#007BE5" />
             </div>
             <div className="acct-meta">
               <div className="acct-type">SPECIAL SAVING</div>
               <div className="acct-num">XXXX&nbsp;&nbsp;XXXX&nbsp;&nbsp;XXXX</div>
               <div className="acct-bal-row">
                 <span className="acct-bal">
-                  {visible ? "Rs. 2,48,500.00" : "Rs. ●●●.●●"}
+                  {visible ? "Rs. 2,48,500.00" : (
+                    <span style={{ letterSpacing: '4px', verticalAlign: 'middle', fontSize: '18px' }}>
+                      Rs. •••• ••
+                    </span>
+                  )}
                 </span>
                 <button className="eye-btn" onClick={() => setVisible(v => !v)} aria-label="Toggle balance">
                   <Icon name={visible ? "eyeOff" : "eye"} size={16} color="#6B7A8D" />
@@ -295,12 +299,10 @@ export default function Home() {
         .acct-row { display: flex; align-items: center; gap: 14px; }
         .acct-avatar {
           width: 54px; height: 54px;
-          background: #fff;
-          border: 1px solid #E8EDF4;
+          background: #EEF6FF;
           border-radius: 50%;
           display: flex; align-items: center; justify-content: center;
           flex-shrink: 0;
-          overflow: hidden;
         }
         .acct-meta { flex: 1; }
         .acct-type {
@@ -317,6 +319,7 @@ export default function Home() {
         .acct-bal {
           font-size: 22px; font-weight: 700;
           color: #00274A; letter-spacing: -0.3px;
+          display: flex; align-items: center;
         }
         .eye-btn {
           background: none; border: none; cursor: pointer;
