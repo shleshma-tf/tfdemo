@@ -116,7 +116,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>TF Demo — Digital Wallet</title>
+        <title>Third Factor SDK Demo </title>
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -164,20 +164,21 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── KYC Banner ── */}
-        <div className={`kyc-banner${error ? " kyc-err" : ""}`}>
-          <div className="kyc-left">
-            <div className="kyc-icon-wrap">
-              <Icon name="shield" size={20} color="#007BE5" />
+        {/* ── Redesigned Premium KYC Banner ── */}
+        <div className={`kyc-banner-v2 ${error ? "kyc-err" : ""}`}>
+          <div className="kyc-v2-glow"></div>
+          <div className="kyc-v2-content">
+            <div className="kyc-v2-icon">
+              <Icon name="shield" size={22} color="#fff" strokeWidth={2} />
             </div>
-            <div>
-              <div className="kyc-title">Identity Verification Required</div>
-              <div className="kyc-sub">Complete KYC to unlock all wallet features</div>
+            <div className="kyc-v2-text">
+              <div className="kyc-v2-title">Verify Your Identity</div>
+              <p className="kyc-v2-sub">Unlock higher limits and secure your assets.</p>
             </div>
+            <button className="kyc-v2-btn" onClick={handleVerify} disabled={loading}>
+              {loading ? <span className="spin" /> : "Start KYC →"}
+            </button>
           </div>
-          <button className="kyc-btn" onClick={handleVerify} disabled={loading}>
-            {loading ? <span className="spin" /> : "Verify Identity"}
-          </button>
         </div>
 
         {error && <div className="err-bar">{error}</div>}
@@ -327,59 +328,70 @@ export default function Home() {
           border-radius: 6px;
         }
         .eye-btn:hover { background: #F0F4F9; }
-        .kyc-banner {
-          margin: 12px 16px 0;
+
+        /* ── Redesigned Banner V2 ── */
+        .kyc-banner-v2 {
+          position: relative;
+          margin: 16px;
+          padding: 20px;
+          border-radius: 16px;
           background: #00274A;
-          border-radius: 14px;
-          padding: 16px 18px;
+          overflow: hidden;
+          box-shadow: 0 10px 25px -5px rgba(0, 39, 74, 0.2);
+        }
+        .kyc-v2-glow {
+          position: absolute;
+          top: -50px;
+          right: -50px;
+          width: 120px;
+          height: 120px;
+          background: radial-gradient(circle, rgba(0,123,229,0.4) 0%, rgba(0,123,229,0) 70%);
+          filter: blur(20px);
+        }
+        .kyc-v2-content {
+          position: relative;
+          z-index: 1;
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          gap: 12px;
-          border: 1.5px solid transparent;
+          gap: 16px;
         }
-        .kyc-err { border-color: #f87171; }
-        .kyc-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
-        .kyc-icon-wrap {
-          width: 40px; height: 40px; flex-shrink: 0;
-          background: rgba(0,123,229,0.15);
-          border-radius: 10px;
+        .kyc-v2-icon {
+          width: 44px; height: 44px;
+          background: linear-gradient(135deg, #007BE5 0%, #005bb5 100%);
+          border-radius: 12px;
           display: flex; align-items: center; justify-content: center;
+          box-shadow: 0 4px 12px rgba(0, 123, 229, 0.3);
         }
-        .kyc-title {
-          font-size: 12.5px; font-weight: 700;
-          color: #fff; line-height: 1.3; margin-bottom: 3px;
+        .kyc-v2-text { flex: 1; }
+        .kyc-v2-title {
+          font-size: 15px; font-weight: 700; color: #fff;
+          margin-bottom: 2px;
         }
-        .kyc-sub { font-size: 11px; color: #54AFFF; line-height: 1.4; }
-        .kyc-btn {
-          background: #007BE5; color: #fff;
-          border: none; border-radius: 9px;
-          padding: 11px 16px; font-size: 12.5px; font-weight: 700;
-          cursor: pointer; white-space: nowrap;
-          min-width: 100px; min-height: 42px;
-          display: flex; align-items: center; justify-content: center;
-          transition: background 0.15s, transform 0.1s;
-          letter-spacing: 0.1px;
+        .kyc-v2-sub {
+          font-size: 11px; color: #9BAAB8; line-height: 1.4;
+          margin: 0;
         }
-        .kyc-btn:hover:not(:disabled) { background: #0069cc; transform: translateY(-1px); }
-        .kyc-btn:active { transform: translateY(0); }
-        .kyc-btn:disabled { opacity: 0.65; cursor: not-allowed; }
-        .spin {
-          display: inline-block; width: 16px; height: 16px;
-          border: 2px solid rgba(255,255,255,0.25);
-          border-top-color: #fff; border-radius: 50%;
-          animation: spin 0.65s linear infinite;
+        .kyc-v2-btn {
+          background: #fff; color: #00274A;
+          border: none; border-radius: 10px;
+          padding: 10px 14px; font-size: 12px; font-weight: 700;
+          cursor: pointer; transition: all 0.2s;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        .kyc-v2-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 10px rgba(255,255,255,0.2);
+        }
+        .kyc-err { border: 1.5px solid #f87171; }
+
         .err-bar {
-          margin: 8px 16px 0;
+          margin: 0 16px 8px;
           background: #FEF2F2; border: 1px solid #FCA5A5;
           border-radius: 10px; padding: 10px 14px;
           font-size: 12px; color: #B91C1C; font-weight: 500;
         }
         .card {
           background: #fff;
-          margin: 12px 16px 0;
+          margin: 0 16px 12px;
           border-radius: 14px;
           padding: 16px 18px;
           box-shadow: 0 1px 6px rgba(0,39,74,0.06);
@@ -406,7 +418,7 @@ export default function Home() {
         .dot.active { background: #007BE5; width: 32px; }
         .grid-card {
           background: #fff;
-          margin: 12px 16px 0;
+          margin: 0 16px 12px;
           border-radius: 14px;
           overflow: hidden;
           box-shadow: 0 1px 6px rgba(0,39,74,0.06);
@@ -484,6 +496,13 @@ export default function Home() {
         .footer-sub {
           font-size: 11px; color: #9BAAB8; font-weight: 400;
         }
+        .spin {
+          display: inline-block; width: 16px; height: 16px;
+          border: 2px solid rgba(0,0,0,0.1);
+          border-top-color: #00274A; border-radius: 50%;
+          animation: spin 0.65s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
       `}</style>
     </>
   );
