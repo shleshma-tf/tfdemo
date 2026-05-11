@@ -12,7 +12,7 @@ A demo digital wallet app that showcases the Third Factor KYC SDK. Each time a c
 4. The serverless function:
    - Generates a unique demo user ID (e.g. `demo-swift-falcon-4821`)
    - Signs a HS256 JWT with the ThirdFactor secret
-   - POSTs to `https://referro.sdk.thirdfactor.ai/tfauth/get-kyc-url/`
+   - POSTs to `https://app200.sdk.thirdfactor.ai/tfauth/get-kyc-url/`
    - Returns the one-time URL to the browser
 5. Browser redirects to the ThirdFactor KYC journey.
 6. On completion, the user lands on `/kyc-complete`.
@@ -42,10 +42,10 @@ In Vercel → Project → Settings → Environment Variables, add:
 
 | Key | Value |
 |-----|-------|
-| `TF_JWT_SECRET` | `xlG8XTIMmBMkjUsURf1s3XuVDbxbbQQ3e6OA6mVJ` |
-| `TF_REQUESTING_TOKEN` | `BUSVfiDgk4QaVrbs3x1597k7PQcJAJlAkTQEcoCvucg` |
-| `TF_BASE_URL` | `https://referro.sdk.thirdfactor.ai` |
-| `TF_ISSUER` | `referro` |
+| `TF_JWT_SECRET` | `6usZpNjZtRPscpjAUbvm1eug19Wx6OfxeRha3M6V` |
+| `TF_REQUESTING_TOKEN` | `Xig_Ddl6hr5Dy17j82smYk9FJx0MQHPnmpvTL0pO1-g` |
+| `TF_BASE_URL` | `https://app200.sdk.thirdfactor.ai` |
+| `TF_ISSUER` | `app200` |
 
 ⚠️ **Never commit `.env.local` to git** — the `.gitignore` handles this.
 
